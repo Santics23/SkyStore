@@ -1,0 +1,40 @@
+﻿
+
+
+.img-fluid img {
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
+    transition: all 0.8s ease;
+}
+
+    .img-fluid img:hover {
+        transition: all 0.6s ease;
+        filter: brightness(150%);
+    }
+
+.col {
+    margin-right: 160px;
+    text-align: center;
+}
+
+.col-fin {
+    margin-right: 0;
+    text-align: center;
+}
+
+.col a {
+    color: black;
+}
+
+    .col a:hover {
+        color: grey;
+    }
+
+.col-fin a {
+    color: black;
+}
+
+    .col-fin a:hover {
+        color: grey;
+    }

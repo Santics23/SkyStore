@@ -1,0 +1,180 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="appWebSkyStore.Site1" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <title></title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <link href="Vista/Bootstrap/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" crossorigin="anonymous">
+    <link href="Vista/CSS/header.css" rel="stylesheet" />
+    <link href="CSS/shop.css" rel="stylesheet" />
+    <link href="CSS/home.css" rel="stylesheet" />
+    <link href="Vista/CSS/footer.css" rel="stylesheet" />
+    <link href="CSS/owl.carousel.min.css" rel="stylesheet" />
+    <link href="CSS/Categorias.css" rel="stylesheet" />
+    <link href="Vista/CSS/popup.css" rel="stylesheet" />
+    <link href="Vista/CSS/slicknav.min.css" rel="stylesheet" />
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="Scripts/sweetAlert.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <script src="../Scripts/owl.carousel.min.js"></script>
+    <script src="../Scripts/mainPageP.js"></script>
+    <style>
+        .modal-backdrop.fade.show {
+            display: none !important;
+        }
+
+        #txtBuscar {
+            border: none;
+            border-radius: 4px;
+            border-bottom: 2px solid #808080;
+        }
+    </style>
+
+</head>
+<body>
+    <form id="form1" runat="server">
+        <!-- Page Preloder -->
+        <%--<div class="custom-loader"></div>--%>
+
+        <!-- Header Section Begin -->
+        <header class="header">
+            <div class="header__top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-7">
+                            <div class="header__top__left">
+                                <p></p>
+                            </div>
+                        </div>
+                        <div runat="server" id="Logsign" class="col-lg-6 col-md-5">
+                            <div class="header__top__right">
+                                <div class="header__top__links">
+                                    <a href="RegistrarUsuarios.aspx">Sign in</a>
+                                    <a href="Login.aspx">Log in</a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-2 col-md-2">
+                        <div class="header__logo">
+                            <a href="Home.aspx" class="text-black" style="font-size: 25px;">
+                                <img src="imagenes/SkyStore__1_-removebg-preview.png" style="width: 30%;" />
+                                SkyStore</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-md-5 input-group">
+                        <asp:TextBox ID="txtBuscar" CssClass="form-control bg-white" runat="server" placeholder="Buscar" aria-label="Buscar" aria-describedby="basic-addon1"></asp:TextBox>
+                        <asp:LinkButton runat="server" OnClick="btnSearch_Click"><i class="input-group fa fa-magnifying-glass fa-lg text-black" id="basic-addon1"></i></asp:LinkButton>
+                    </div>
+                    <div class="col-lg-5 col-md-5">
+                        <nav class="header__menu mobile-menu">
+                            <ul>
+                                <li class=""><a href="Home.aspx">Home</a></li>
+                                <li><a href="Productos.aspx">Productos</a></li>
+                                <li><a href="VerTienda.aspx">Tiendas</a></li>
+                                <li><i class="fa fa-cart-shopping fa-lg text-black"></i></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Header Section End -->
+
+        <div class="d-flex justify-content-center align-items-center">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+
+        <!-- Footer Section Begin -->
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="footer__about">
+                            <div class="footer__logo">
+                                <a href="Home.aspx" class="text-white" style="font-size: 25px;">
+                                <img src="imagenes/image.png" style="width: 30%;" />
+                                SkyStore</a>
+                            </div>
+                            <p>Ofrecemos la mejor experiencia y calidad a nuestros usuarios, orgullosos de portar el nombre de SkyStore, ya que te sentirás como en el cielo con las interacciones dentro de nuestro sitio.</p>                            
+                        </div>
+                    </div>
+                    <div id="menu" runat="server" class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">
+                        <div class="footer__widget">
+                            <h6>Tienda</h6>
+                            <ul>
+                                <li><a href="#categorias">Categorias</a></li>
+                                <li><a href="#productos">Nuestros Productos</a></li>
+                                <li><a href="#SecMarcas">Nuestras Tiendas</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-6">
+                        <div class="footer__widget">
+                            <h6>Más Por Ver</h6>
+                            <ul>
+                                <li><a href="Home.aspx">Página Principal</a></li>
+                                <li><a href="Productos.aspx">Ver Más Productos</a></li>
+                                <li><a href="VerTienda.aspx">Ver Más Tiendas</a></li>                                
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 offset-lg-1 col-md-6 col-sm-6">
+                        <div class="footer__widget">
+                            <h6>Interesante</h6>
+                            <div class="footer__newslatter">
+                                <p>Sé el primero en enterarte de nuestros productos más recientes y de nuestros descuentos!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <div class="footer__copyright__text">                            
+                            <p>
+                                Copyright ©
+                            <script>
+                                document.write(new Date().getFullYear());
+                            </script>
+                            All rights reserved | This is made by Santiago Castillo and Raul Morales
+                            </p>                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Footer Section End -->
+    </form>
+
+
+
+    <!-- JavaScript Libraries -->
+    <script src="../Scripts/owl.carousel.min.js"></script>
+    <script src="../Scripts/mainPageP.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="https://kit.fontawesome.com/e80f060ded.js" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    
+</body>
+</html>
