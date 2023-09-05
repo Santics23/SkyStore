@@ -27,7 +27,6 @@ namespace appWebSkyStore.Vista
                 List<ClSubCategoriaE> listaSubCategoria = new List<ClSubCategoriaE>();
                 listaSubCategoria = objDatos.mtdListarSub();
 
-
                 sltSubCategoria.DataSource = listaSubCategoria;
                 sltSubCategoria.DataTextField = "subCategoria";
                 sltSubCategoria.DataValueField = "idSubCategoria";
@@ -66,7 +65,6 @@ namespace appWebSkyStore.Vista
             objActualizarProducto.Nombre = datos["Nombre"].ToString();
             objActualizarProducto.Precio = float.Parse(datos["Precio"].ToString());
             objActualizarProducto.Descripcion = datos["Descripcion"].ToString();
-            objActualizarProducto.Imagen = datos["Imagen"].ToString();
             objActualizarProducto.Stock = int.Parse(datos["Stock"].ToString());
             objActualizarProducto.Estado = datos["Estado"].ToString();
             objActualizarProducto.Promocion = datos["Promocion"].ToString();
@@ -76,6 +74,7 @@ namespace appWebSkyStore.Vista
             int resultado = objProductoL.mtdActualizacion(objActualizarProducto);
 
             return "success"; // Devuelve una respuesta al cliente
+
         }
 
         [WebMethod]

@@ -34,7 +34,7 @@
                     </div>
                 </header>
                 <nav class="dashboard-nav-list">
-                    <a href="Home.aspx" class="dashboard-nav-item"><i class="fas fa-home"></i>Home </a>
+                    <a href="Home.aspx" class="dashboard-nav-item"><i class="fas fa-home"></i>Página Principal</a>
 
                     <div class="dashboard-nav-dropdown">
                         <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="bi bi-shop"></i>Tiendas</a>

@@ -42,6 +42,16 @@ namespace appWebSkyStore.Vista
                 objDatosProductos.Imagen = "ImagenProducto/" + imagen;
                 objDatosProductos.Stock = int.Parse(txtStock.Text);
                 objDatosProductos.Estado = txtEstado.Text;
+                objDatosProductos.Promocion = txtPromocion.Text;
+                if (txtDescuento.Text == "")
+                {
+                    objDatosProductos.Descuento = 0;
+                }
+                else
+                {
+                    objDatosProductos.Descuento = float.Parse(txtDescuento.Text);
+                }
+                
                 objDatosProductos.idSubCategoria = int.Parse(sltSubCategoria.SelectedIndex.ToString());
 
 
@@ -50,9 +60,12 @@ namespace appWebSkyStore.Vista
 
                 if (resultado == 1)
                 {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "SweetAlert", "sweetAlert2('Producto Registrado','El Producto se Ha Registrado','success');", true); ;
+                    ScriptManager.RegisterStartupScript(this, GetType(), "SweetAlert", "sweetAlert2('Producto Registrado','El Producto se Ha Registrado','success');", true); 
                 }
 
+            }else
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "SweetAlert", "sweetAlert2('No ha Ingresado una Imagen','Ingrese una imagen para registrar su producto','info');", true);
             }
 
         }

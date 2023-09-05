@@ -181,6 +181,7 @@
     <Content Include="Vista\CSS\slicknav.min.css" />
     <Content Include="Vista\CSS\StylesRegistroEdit.css" />
     <Content Include="Vista\CSS\stylesRegistroProduct.css" />
+    <Content Include="Vista\CSS\StylesRegistroRegisT.css" />
     <Content Include="Vista\CSS\verTienda.css" />
     <Content Include="Vista\DatosAdmin.aspx" />
     <Content Include="Vista\DatosAdminT.aspx" />
@@ -190,6 +191,7 @@
     <Content Include="Vista\imagenes\hero-2.jpg" />
     <Content Include="Vista\imagenes\image %283%29.png" />
     <Content Include="Vista\imagenes\image.png" />
+    <Content Include="Vista\imagenes\pngtree-black-stick-line-drawing-e-commerce-mobile-phone-online-shopping-icon-png-image_1602855.jpg" />
     <Content Include="Vista\imagenes\tienda-online-featured-baetica.jpg" />
     <Content Include="Vista\imgesCategoria\IMG_1641.jpg" />
     <Content Include="Vista\imgesCategoria\IMG_1642.jpg" />

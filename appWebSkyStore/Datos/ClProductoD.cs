@@ -14,9 +14,9 @@ namespace appWebSkyStore.Datos
         public int MtdRegistrar(ClProductoE objDatos)
         {
 
-            String consulta = "insert into Producto(codigoProducto,nombreProducto,precio,descripcion,imagen,stock,estado,idSubCategoria)" +
+            String consulta = "insert into Producto(codigoProducto,nombreProducto,precio,descripcion,imagen,stock,estado,promocion,descuento,idSubCategoria)" +
                                 "values('" + objDatos.Codigo + "','" + objDatos.Nombre + "'," + objDatos.Precio + ",'" +
-                                objDatos.Descripcion + "','" + objDatos.Imagen + "'," + objDatos.Stock + ",'" + objDatos.Estado + "'," + objDatos.idSubCategoria + ")";
+                                objDatos.Descripcion + "','" + objDatos.Imagen + "'," + objDatos.Stock + ",'" + objDatos.Estado + "','" + objDatos.Promocion + "'," + objDatos.Descuento + "," + objDatos.idSubCategoria + ")";
 
             ClProcesarSql objSQL = new ClProcesarSql();
             int canReg = objSQL.mtdIUDConect(consulta);

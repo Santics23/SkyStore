@@ -1,137 +1,85 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AdminTienda.Master" AutoEventWireup="true" CodeBehind="RegistrarTienda.aspx.cs" Inherits="appWebSkyStore.Vista.RegistrarTienda" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <style>
-        /* Estilos para el campo de carga de archivos */
-        .custom-file-input {
-            visibility: hidden;
-            width: 0;
-        }
-
-        .custom-file-label {
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            display: inline-block;
-            position: relative;
-            overflow: hidden;
-        }
-
-            .custom-file-label:hover {
-                background-color: #0056b3;
-            }
-
-        /* Cambia el estilo cuando se selecciona un archivo */
-        .custom-file-input:focus ~ .custom-file-label {
-            border-color: #80bdff;
-            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-        }
-
-        /* Estilos cuando hay un archivo cargado */
-        .custom-file-input:valid ~ .custom-file-label {
-            background-color: #28a745;
-        }
-
-        /* Añade un margen derecho al botón de carga para separarlo del campo de texto */
-        .custom-file-input ~ .custom-file-label {
-            margin-right: 5px;
-        }
-    </style>
-    <link href="CSS/RegistroTienda.css" rel="stylesheet" />
-    <link href="../Styles/sweetalert.css" rel="stylesheet" />
-    <script src="../Scripts/sweetalert.min.js"></script>
-    <script src="../Scripts/sweetalert-dev.js"></script>
-    <script src="../Scripts/sweetAlerts.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="CSS/StylesRegistroRegisT.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:Panel runat="server" ID="formularioPanel">
+        <div class="container" style="padding: 2rem;">
+            <div class="contact__wrapper shadow-lg mt-n9">
+                <div class="row no-gutters">
+                    <div class="col-lg-5 contact-info__wrapper gradient-brand-color p-5 order-lg-2">
+                    </div>
 
+                    <div class="col-lg-7 contact-form__wrapper p-5 order-lg-1">
+                        <div action="#" class="contact-form form-validate" novalidate="novalidate">
+                            <div class="row">
+                                <div class="col-sm-6 mb-3">
+                                    <div class="form-group">
+                                        <label class="required-field" for="Codigo">Codigo:</label>
+                                        <asp:TextBox ID="txtCodigo" name="Codigo" placeholder="Codigo" class="form-control" runat="server"></asp:TextBox>
+                                    </div>
+                                </div>
 
-    <div>
-        <div class="container">
-            <header>
-                <h1></h1>
-            </header>
-            <h1 class="text-center">Registro de Tienda</h1>
+                                <div class="col-sm-6 mb-3">
+                                    <div class="form-group">
+                                        <label for="username">Nombre</label>
+                                        <asp:TextBox ID="txtNombre" name="username" placeholder="Nombre" class="form-control" runat="server"></asp:TextBox>
+                                    </div>
+                                </div>
 
-            <asp:Panel ID="formularioPanel" runat="server">
+                                <div class="col-sm-6 mb-3">
+                                    <div class="form-group">
+                                        <label for="Descripcion">Descripción:</label>
+                                        <asp:TextBox ID="txtDescripcion" name="Descripcion" placeholder="Descripcion" class="form-control" runat="server"></asp:TextBox>
+                                    </div>
+                                </div>
 
-                <label class="text-bg-info">
-                    <span class="label-text">Codigo</span>
-                    <asp:TextBox ID="txtCodigo" runat="server"></asp:TextBox>
-                </label>
+                                <div class="col-sm-6 mb-3">
+                                    <div class="form-group">
+                                        <label for="Direccion">Dirección</label>
+                                        <asp:TextBox ID="txtDireccion" name="Direccion" placeholder="Direccion" class="form-control" runat="server"></asp:TextBox>
+                                    </div>
+                                </div>
 
+                                <div class="col-sm-6 mb-3">
+                                    <div class="form-group">
+                                        <label for="fileUpload" class="">Seleccionar archivo</label>
+                                        <asp:FileUpload ID="fileUpload" type="file" class="form-control" runat="server" />
+                                    </div>
+                                </div>
 
-                <label class="text-bg-info">
-                    <span class="label-text">Nombre de la Tienda</span>
-                    <asp:TextBox ID="txtNombre" runat="server"></asp:TextBox>
-                </label>
+                                <div class="col-sm-12 mb-3">
+                                    <asp:Button Class="btn btn-dark" ID="btnRegistrar" runat="server" Text="Registrar" OnClick="btnRegistrar_Click" />
+                                </div>
+                                <div>
+                                    <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/Términos y Condiciones.pdf" Target="_blank">Terminos y Condiciones</asp:HyperLink>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Contact Form Wrapper -->
 
-
-                <label class="text-bg-info">
-                    <span class="label-text">Descripcion de la tienda</span>
-                    <asp:TextBox ID="txtDescripcion" runat="server"></asp:TextBox>
-                </label>
-
-
-                <asp:FileUpload ID="fileUpload" type="file" class="custom-file-input" runat="server" />
-                <label for="fileUpload" class="custom-file-label">Seleccionar archivo</label>
-
-                <br />
-                <br />
-
-
-                <label class="text-bg-info">
-                    <span class="label-text">Direccion</span>
-                    <asp:TextBox ID="txtDireccion" runat="server"></asp:TextBox>
-                </label>
-
-                <div class="text-center">
-                    <asp:Button Class="btn-dark" ID="btnRegistrar" runat="server" Text="Registrar" OnClick="btnRegistrar_Click" />
                 </div>
+            </div>
+        </div>
+    </asp:Panel>
 
-                <br />
 
-                <div>
-                    <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Términos y Condiciones.pdf" Target="_blank">Terminos y Condiciones</asp:HyperLink>
-                </div>
-            </asp:Panel>
-
-            <asp:Panel ID="Panel1" runat="server">
-
+    <asp:Panel ID="Panel1" runat="server">
+        <div style="border: solid; border-radius:5px;">
+            <div style="padding:123px">
                 <h8 class="text-xxl-start">Por favor digite su correo electronico para hacerle una solicitud de el RUT y la CC</h8>
                 <br />
                 <br />
-                <label class="text-bg-info">
-                    <span class="label-text">Correo</span>
-                    <asp:TextBox ID="txtCorreo" runat="server"></asp:TextBox>
-                </label>
-
-                <asp:Button ID="btnEnviar" runat="server" Text="Enviar" Class="btn-buscar" OnClick="btnEnviar_Click" />
-
-            </asp:Panel>
-
-
+                <div class="input-group">
+                    <span class="input-group-text">Correo</span>
+                    <asp:TextBox ID="txtCorreo" CssClass="form-control" runat="server" aria-describedby="btnEnviar"></asp:TextBox>
+                    <asp:Button ID="btnEnviar" runat="server" Text="Enviar" Class="btn btn-outline-dark" OnClick="btnEnviar_Click" />
+                </div>                
+            </div>
         </div>
+    </asp:Panel>
 
-    </div>
 
-
-    <script>
-        const fileInput = document.getElementById("fileUpload");
-        const fileLabel = document.querySelector(".custom-file-label");
-
-        fileInput.addEventListener("change", function () {
-            if (this.files.length > 0) {
-                fileLabel.textContent = this.files[0].name;
-            } else {
-                fileLabel.textContent = "Seleccionar archivo";
-            }
-        });
-        </script>
 </asp:Content>

@@ -19,7 +19,10 @@ namespace appWebSkyStore
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["rol"].ToString() != "")
+            {
+                Logsign.Visible = false;
+            }
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)

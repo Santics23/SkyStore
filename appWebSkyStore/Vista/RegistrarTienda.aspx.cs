@@ -9,6 +9,7 @@ using System.Net;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using DocumentFormat.OpenXml.Drawing;
 
 namespace appWebSkyStore.Vista
 {
@@ -31,8 +32,7 @@ namespace appWebSkyStore.Vista
 
             if (txtCodigo.Text == "" || txtNombre.Text == "" || txtDescripcion.Text == "" || txtDireccion.Text == "")
             {
-                string mens = "Vaya, Parece Que Tienes Espacios Vacios";
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('¡Campos Vacios','" + mens + "', 'info')", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "SweetAlert", "sweetAlert2('¡Campos Vacios!','Vaya, Parece Que Tienes Espacios Vacios, completa todos los campos', 'info')", true);
             }
             else
             {
@@ -40,14 +40,29 @@ namespace appWebSkyStore.Vista
                 if (fileUpload.HasFile)
                 {
                     imagen = txtCodigo.Text + ".png";
-                    string rutaImg = Server.MapPath("~/Vista/imagesG/" + imagen);
+                    string rutaImg = Server.MapPath("~/Vista/ImagenTienda/" + imagen);
                     fileUpload.SaveAs(rutaImg);
 
                     string codigo = txtCodigo.Text;
                     ClTiendaL obTiendaL = new ClTiendaL();
                     //int contador = obTiendaL.mtdCodigo(codigo);
                     objTiendaE = new ClTiendaE();
-                    objTiendaE.codigoTienda = txtCodigo.Text;
+                    int doc;
+                    if (int.TryParse(txtCodigo.Text, out doc))
+                    {
+                        if (doc > 0)
+                        {
+                            objTiendaE.codigoTienda = txtCodigo.Text;
+                        }
+                        else
+                        {
+                            ScriptManager.RegisterStartupScript(this, GetType(), "SweetAlert", "sweetAlert2('¡El Codigo no Puede Contener Digitos Negativos!','Vuelva a Ingresar su Codigo','warning');", true); ;                           
+                        }
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "SweetAlert", "sweetAlert2('¡Tiene que ser un Codigo, no un texto!','Vuelva a Ingresar su Codigo','warning');", true); ;
+                    }
                     objTiendaE.nombreTienda = txtNombre.Text;
                     objTiendaE.descripcion = txtDescripcion.Text;
                     objTiendaE.imagen = imagen;
@@ -62,14 +77,12 @@ namespace appWebSkyStore.Vista
                         Limpiar();
                         formularioPanel.Visible = false;
                         Panel1.Visible = true;
-                        string mens = "Su tienda ha sido registrada con exito, FELICIDADES";
-                        ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('¡Tienda Registrada!','" + mens + "', 'success')", true);
+                        ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('¡Tienda Registrada!','Su tienda ha sido registrada con exito, FELICIDADES', 'success')", true);
                     }
                 }
                 else
                 {
-                    string mens = "Debe seleccionar una imagen para su tienda";
-                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('¡Seleccion Imagen','" + mens + "', 'info')", true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "SweetAlert", "sweetAlert2('¡Selecciona una Imagen!','Debe seleccionar una imagen para su tienda', 'info');", true);
                 }
             }
 

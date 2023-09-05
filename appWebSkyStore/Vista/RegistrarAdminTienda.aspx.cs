@@ -47,8 +47,7 @@ namespace appWebSkyStore.Vista
                 if (validar == 1)
                 {
                     ScriptManager.RegisterStartupScript(this, GetType(), "SweetAlert", "sweetAlert2('¡ERROR!','Este Usuario Ya Se Encuentra Registrado','warning');", true);
-                    mtdlimpiar();
-
+                    mtdlimpiar();                    
                 }
 
                 else if (validar == 0)
@@ -56,6 +55,7 @@ namespace appWebSkyStore.Vista
                     int resultado = objUsuarioL.mtdRegistrar(objDatosUsuario);
                     ScriptManager.RegisterStartupScript(this, GetType(), "SweetAlert", "sweetAlert2('¡Usuario Registrado!','El Usuario Ha Sido Registrado Con Exito','success');", true);
                     mtdlimpiar();
+                    Response.Redirect("DatosAdminT.aspx");
                 }
 
             }

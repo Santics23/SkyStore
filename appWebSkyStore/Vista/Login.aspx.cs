@@ -12,9 +12,8 @@ namespace appWebSkyStore.Vista
     public partial class Login : System.Web.UI.Page
     {        
         protected void Page_Load(object sender, EventArgs e)
-        {
-           
-
+        {            
+            Master.FindControl("footer").Visible = false;
         }
 
         protected void btnIngresar_Click(object sender, EventArgs e)
@@ -33,24 +32,33 @@ namespace appWebSkyStore.Vista
             {
                 if (idRol == 1)
                 {
-                    Session["nombre"] = objDatos.nombre;                    
-                    Response.Redirect("~/Vista/DatosAdmin.aspx");
-                    Master.FindControl("Logsign").Visible = false;
+                    Session["nombre"] = objDatos.nombre + " " + objDatos.apellido;
+                    Session["rol"] = 1;
+                    limpiar();
+                    Response.Redirect("~/Vista/DatosAdmin.aspx");                                 
                 }
                 else if (idRol == 2)
                 {
-                    Session["nombre"] = objDatos.nombre;
-                    Response.Redirect("~/Vista/DatosAdminT.aspx");
-                    Master.FindControl("Logsign").Visible = false;
+                    Session["nombre"] = objDatos.nombre + " " + objDatos.apellido;
+                    Session["rol"] = 2;
+                    limpiar();
+                    Response.Redirect("~/Vista/DatosAdminT.aspx");                                      
                 }
                 else if( idRol == 3)
                 {
-                    Session["nombre"] = objDatos.nombre;         
-                    Response.Redirect("~/Vista/Home.aspx");
-                    Master.FindControl("Logsign").Visible = false;
+                    Session["nombre"] = objDatos.nombre + " " + objDatos.apellido;
+                    Session["rol"] = 3;
+                    limpiar();
+                    Response.Redirect("~/Vista/Home.aspx");                                       
                 }
                 
             }   
+        }
+
+        public void limpiar()
+        {
+            txtUsuario.Text = "";
+            txtClave.Text = "";
         }
     }
 }

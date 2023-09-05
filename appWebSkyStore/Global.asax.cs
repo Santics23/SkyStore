@@ -18,8 +18,7 @@ namespace appWebSkyStore
         protected void Session_Start(object sender, EventArgs e)
         {
             Session["nombre"] = "";
-            Session["idUsuario"] = "";
-            Session["IdRol"] ="";
+            Session["rol"] = "";
             Session["id"] = "";
             Session["buscar"] = "";
             Session["categs"] = "";

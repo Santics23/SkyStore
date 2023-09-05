@@ -52,8 +52,6 @@
 
                     <asp:TextBox ID="txtDescripcion" runat="server" TextMode="MultiLine" CssClass="form-control mb-3 txt-descripcion"></asp:TextBox>
 
-                    <asp:FileUpload ID="flpImagen" runat="server" class="form-control  mb-3 txt-imagen" />
-
                     <asp:TextBox ID="txtStock" runat="server" placeholder="Stock" class="form-control mb-3 txt-stock"></asp:TextBox>
 
                     <asp:TextBox ID="txtEstado" runat="server" placeholder="Estado" class="form-control mb-3 txt-estado"></asp:TextBox>

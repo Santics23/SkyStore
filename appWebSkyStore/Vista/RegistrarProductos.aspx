@@ -3,12 +3,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="CSS/stylesRegistroProduct.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link href="SweetAlert/Css/sweetalert.css" rel="stylesheet" />
-    <script src="SweetAlert/Script/sweetalert-dev.js"></script>
-    <script src="SweetAlert/Script/sweetalert.min.js"></script>
-    <script src="../Scripts/sweetAlert.js"></script>
-    
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
@@ -52,6 +46,14 @@
                             <asp:TextBox ID="txtEstado" runat="server" placeholder="Estado" class="form-control"></asp:TextBox>
                         </div>
                         <div class="form-group">
+                            <label class="form-control-label">Promoción:</label>
+                            <asp:TextBox ID="txtPromocion" runat="server" placeholder="Promoción" class="form-control"></asp:TextBox>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label">Descuento:</label>
+                            <asp:TextBox ID="txtDescuento" runat="server" placeholder="Descuento" class="form-control"></asp:TextBox>
+                        </div>
+                        <div class="form-group">
                             <label class="form-control-label">Categoria:</label>
                             <select id="sltSubCategoria" runat="server" class="js-example-basic-multiple form-select" name="states">
                             </select>
@@ -67,10 +69,6 @@
     </div>
 
    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-     <script src="SweetAlert/Script/sweetalert-dev.js"></script>
-    <script src="SweetAlert/Script/sweetalert.min.js"></script>
-    <script src="../Scripts/sweetAlert.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
     <script>
         $(document).ready(function () {
