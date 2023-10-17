@@ -8,10 +8,9 @@
     <title></title>
     <link href="CSS/RegistroAdminTienda.css" rel="stylesheet" />
     <script src="../Scripts/sweetAlert.js"></script>
-    <script src="SweetAlert/Script/sweetalert-dev.js"></script>
-    <script src="SweetAlert/Script/sweetalert.min.js"></script>
-    <link href="SweetAlert/Css/sweetalert.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.23/dist/sweetalert2.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.23/dist/sweetalert2.all.min.js"></script>
+    <script src="../Scripts/sweetAlert.js"></script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -63,7 +62,7 @@
     </form>
 
     <%-- Scripts--%>
-    
+
     <script src="../Scripts/sweetAlert.js"></script>
     <script src="SweetAlert/Script/sweetalert-dev.js"></script>
     <script src="SweetAlert/Script/sweetalert.min.js"></script>

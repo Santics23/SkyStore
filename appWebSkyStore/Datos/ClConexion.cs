@@ -12,7 +12,7 @@ namespace appWebSkyStore.Datos
 
         public SqlConnection MtdConexion()
         {
-            conexion = new SqlConnection("Data Source=.;Initial Catalog=dbSkyStore;Persist Security Info=True;User ID=SantiagoCastillo;Password=123456789");
+            conexion = new SqlConnection("Data Source=.;Initial Catalog=dbSkyStore;Integrated Security=True");
             conexion.Open();
             return conexion;
         }

@@ -20,39 +20,59 @@ namespace appWebSkyStore.Vista
         {
             string usuario = txtUsuario.Text;
             string clave = txtClave.Text;
+
             ClUsuarioL objUsuarioL = new ClUsuarioL();
-            ClUsuarioE objDatos = objUsuarioL.mtdLogin(usuario, clave);
-            int idUsuario = objDatos.idUsuario;
-
-            ClRolUsuarioE objrol = objUsuarioL.mtdLoginrol(idUsuario);
-
-            int idRol = objrol.idRol;
-
-            if (objDatos != null)
+            ClUsuarioE objDatos = objUsuarioL.mtdLogin(usuario);
+            if(objDatos == null)
             {
-                if (idRol == 1)
+                ScriptManager.RegisterStartupScript(this, GetType(), "SweetAlert", "sweetAlert2('¡Datos Incorrectos!','Intentelo de Nuevo, por favor','warning');", true);
+            }
+            else
+            {
+                ClEncriptarAES encr = new ClEncriptarAES();
+                string passDes = objDatos.clave;
+                string passDesC = encr.descifrarTextoAES(passDes);
+
+                if (usuario == objDatos.email && clave == passDesC)
                 {
-                    Session["nombre"] = objDatos.nombre + " " + objDatos.apellido;
-                    Session["rol"] = 1;
-                    limpiar();
-                    Response.Redirect("~/Vista/DatosAdmin.aspx");                                 
+                    int idUsuario = objDatos.idUsuario;
+
+                    ClRolUsuarioE objrol = objUsuarioL.mtdLoginrol(idUsuario);
+
+                    int idRol = objrol.idRol;
+                    if (idRol == 1)
+                    {
+                        Session["nombre"] = objDatos.nombre + " " + objDatos.apellido;
+                        Session["id"] = idUsuario;
+                        Session["rol"] = 1;
+                        Session["correo"] = objDatos.email;
+                        limpiar();
+                        Response.Redirect("~/Vista/DatosAdmin.aspx");
+                    }
+                    else if (idRol == 2)
+                    {
+                        Session["nombre"] = objDatos.nombre + " " + objDatos.apellido;
+                        Session["id"] = idUsuario;
+                        Session["rol"] = 2;
+                        Session["correo"] = objDatos.email;
+                        limpiar();
+                        Response.Redirect("~/Vista/DatosAdminT.aspx");
+                    }
+                    else if (idRol == 3)
+                    {
+                        Session["nombre"] = objDatos.nombre + " " + objDatos.apellido;
+                        Session["id"] = idUsuario;
+                        Session["rol"] = 3;
+                        Session["correo"] = objDatos.email;
+                        limpiar();
+                        Response.Redirect("~/Vista/Home.aspx");
+                    }
                 }
-                else if (idRol == 2)
+                else
                 {
-                    Session["nombre"] = objDatos.nombre + " " + objDatos.apellido;
-                    Session["rol"] = 2;
-                    limpiar();
-                    Response.Redirect("~/Vista/DatosAdminT.aspx");                                      
+                    ScriptManager.RegisterStartupScript(this, GetType(), "SweetAlert", "sweetAlert2('¡Datos Incorrectos!','Intentelo de Nuevo, por favor','warning');", true);
                 }
-                else if( idRol == 3)
-                {
-                    Session["nombre"] = objDatos.nombre + " " + objDatos.apellido;
-                    Session["rol"] = 3;
-                    limpiar();
-                    Response.Redirect("~/Vista/Home.aspx");                                       
-                }
-                
-            }   
+            }            
         }
 
         public void limpiar()

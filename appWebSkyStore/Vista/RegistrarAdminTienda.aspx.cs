@@ -24,7 +24,10 @@ namespace appWebSkyStore.Vista
             objDatosUsuario.apellido = txtApellido.Text;
             objDatosUsuario.telefono = txtTelefono.Text;
             objDatosUsuario.email = txtEmail.Text;
-            objDatosUsuario.clave = txtClave.Text;
+            ClEncriptarAES encrypAES = new ClEncriptarAES();
+            string contraseñaEn = txtClave.Text;
+            string lp = encrypAES.cifrarTextoAES(contraseñaEn);
+            objDatosUsuario.clave = lp;
             objDatosUsuario.idRol = 2;
 
 
@@ -53,9 +56,8 @@ namespace appWebSkyStore.Vista
                 else if (validar == 0)
                 {
                     int resultado = objUsuarioL.mtdRegistrar(objDatosUsuario);
-                    ScriptManager.RegisterStartupScript(this, GetType(), "SweetAlert", "sweetAlert2('¡Usuario Registrado!','El Usuario Ha Sido Registrado Con Exito','success');", true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "SweetAlert", "MostrarSweetAlert3();", true);
                     mtdlimpiar();
-                    Response.Redirect("DatosAdminT.aspx");
                 }
 
             }

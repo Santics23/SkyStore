@@ -12,6 +12,10 @@
         .textfil {
             text-align: center;
         }
+
+        .ocultar {
+            display: none;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -214,8 +218,8 @@
                 <div class="row pb-3">
                     <asp:Repeater ID="cards" runat="server">
                         <ItemTemplate>
-                            <div class="col-4 pb-1">
-                                <div class="d-flex align-items-center justify-content-between mb-4">
+                            <div class="col-3" style="padding-right: 250px;">
+                                <div class="d-flex align-items-center justify-content-center mb-4">
                                     <div class="col-lg-4 col-md-2 col-sm-12 pb-1">
                                         <div class="index2 card shadow-sm">
                                             <img src="<%# Eval("imagen") %>" id="imgCard" class="card-img-top" />
@@ -225,13 +229,14 @@
                                                 <div class="clearfix">
                                                     <span class="float-start badge rounded-pill bg-black"><%# Eval("precio")  %></span>
                                                     <span class="float-end"><a href="#" class="small text-muted"><%# Eval("descripcion")  %></a></span>
+                                                    <asp:Label ID="idProducto" runat="server" class="ocultar" Text='<%# Eval("idProducto") %>'></asp:Label>
                                                 </div>
                                                 <div class="text-center my-4">
                                                     <div class="button">
                                                         <div class="button-wrapper">
                                                             <div class="text" style="font-size: 11px;">Añadir al Carrito +</div>
-                                                            <asp:LinkButton runat="server" class="icon">
-                                                            <i class="fa fa-cart-shopping fa-lg"></i>
+                                                            <asp:LinkButton runat="server" class="icon" OnClick="agregarAlCarrito_Click">
+                                            <i class="fa fa-cart-shopping fa-lg"></i>
                                                             </asp:LinkButton>
                                                         </div>
                                                     </div>
@@ -239,7 +244,6 @@
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         </ItemTemplate>
@@ -250,7 +254,6 @@
     </div>
 
     <!--JavaScript-->
-
     <script>
         // Obtén una lista de todos los radio buttons
         const radioButtons = document.querySelectorAll('input[type="radio"]');

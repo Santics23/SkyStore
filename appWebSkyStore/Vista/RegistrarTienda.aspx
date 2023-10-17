@@ -74,7 +74,7 @@
                 <br />
                 <div class="input-group">
                     <span class="input-group-text">Correo</span>
-                    <asp:TextBox ID="txtCorreo" CssClass="form-control" runat="server" aria-describedby="btnEnviar"></asp:TextBox>
+                    <asp:TextBox ID="txtCorreo" CssClass="form-control" runat="server" aria-describedby="btnEnviar" required=""></asp:TextBox>
                     <asp:Button ID="btnEnviar" runat="server" Text="Enviar" Class="btn btn-outline-dark" OnClick="btnEnviar_Click" />
                 </div>                
             </div>

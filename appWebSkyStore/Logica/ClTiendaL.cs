@@ -64,5 +64,20 @@ namespace appWebSkyStore.Logica
             return catAct;
 
         }
+
+        public List<ClTiendaE> mtdListarTiendaAdmin(int id)
+        {
+            ClTiendaD objTienda = new ClTiendaD();
+            List<ClTiendaE> listatiendas = objTienda.mtdListarTiendaAdmin(id);
+
+            return listatiendas;
+        }
+
+        public ClTiendaE mtdCorreoUsu(string codigo)
+        {
+            ClTiendaD objTienda = new ClTiendaD();
+            ClTiendaE objDatos = objTienda.mtdCorreoUsu(codigo);
+            return objDatos;
+        }
     }
 }

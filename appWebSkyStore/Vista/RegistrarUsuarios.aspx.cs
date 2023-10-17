@@ -25,7 +25,8 @@ namespace appWebSkyStore.Vista
             ClUsuarioE objDatosUsuario = new ClUsuarioE();
 
             int doc;
-            if (txtDocumento.Text != "" && txtNombre.Text != "" && txtApellido.Text != "" && txtTelefono.Text != "" && txtEmail.Text != "" && txtClave.Text != "") {
+            if (txtDocumento.Text != "" && txtNombre.Text != "" && txtApellido.Text != "" && txtTelefono.Text != "" && txtEmail.Text != "" && txtClave.Text != "")
+            {
                 if (int.TryParse(txtDocumento.Text, out doc))
                 {
                     if (doc > 0)
@@ -34,33 +35,24 @@ namespace appWebSkyStore.Vista
                     }
                     else
                     {
-                        ScriptManager.RegisterStartupScript(this, GetType(), "SweetAlert", "sweetAlert2('¡El Documento no Puede Contener Digitos Negativos!','Vuelva a Ingresar su documento','warning');", true); ;
+                        ScriptManager.RegisterStartupScript(this, GetType(), "SweetAlert", "sweetAlert2('¡El Documento no Puede Contener Digitos Negativos!','Vuelva a Ingresar su documento','warning');", true); 
                     }
                 }
                 else
                 {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "SweetAlert", "sweetAlert2('¡Tiene que ser un número de Documento, no un texto!','Vuelva a Ingresar su documento','warning');", true); ;
+                    ScriptManager.RegisterStartupScript(this, GetType(), "SweetAlert", "sweetAlert2('¡Tiene que ser un número de Documento, no un texto!','Vuelva a Ingresar su documento','warning');", true); 
                 }
                 objDatosUsuario.nombre = txtNombre.Text;
                 objDatosUsuario.apellido = txtApellido.Text;
 
-                if (int.TryParse(txtTelefono.Text, out doc))
-                {
-                    if (doc > 0)
-                    {
-                        objDatosUsuario.telefono = txtTelefono.Text;
-                    }
-                    else
-                    {
-                        ScriptManager.RegisterStartupScript(this, GetType(), "SweetAlert", "sweetAlert2('¡El Número de Telefono no Puede Contener Digitos Negativos!','Vuelva a Ingresar su Telefono','warning');", true); ;
-                    }
-                }
-                else
-                {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "SweetAlert", "sweetAlert2('¡Tiene que ser un número de Telefono, no un texto!','Vuelva a Ingresar su Telefono','warning');", true); ;
-                }
+
+                objDatosUsuario.telefono = txtTelefono.Text;
+
                 objDatosUsuario.email = txtEmail.Text;
-                objDatosUsuario.clave = txtClave.Text;
+                ClEncriptarAES encrypAES = new ClEncriptarAES();
+                string contraseñaEn = txtClave.Text;
+                string lp = encrypAES.cifrarTextoAES(contraseñaEn);
+                objDatosUsuario.clave = lp;
                 objDatosUsuario.idRol = 3;
 
                 ClUsuarioL objUsuarioL = new ClUsuarioL();
@@ -70,7 +62,7 @@ namespace appWebSkyStore.Vista
 
                 if (resultado == 1)
                 {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "SweetAlert", "sweetAlert2('¡Usuario Registrado!','El Usuario ha Sido Registrado Con Exito','success');", true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "SweetAlert", "MostrarSweetAlert3();", true);
                     limpiar();
                 }
             }

@@ -112,6 +112,35 @@ namespace appWebSkyStore.Datos
 
         }
 
+        public List<ClTiendaE> mtdListarTienda(int idUsuario)
+        {
+
+            string consulta = "SELECT * FROM Tienda Where idUsuario = "+ idUsuario +"";
+
+            ClProcesarSql objSQL = new ClProcesarSql();
+            DataTable tblTiendas = objSQL.mtdSelectDesc(consulta);
+
+            List<ClTiendaE> listaTiendas = new List<ClTiendaE>();
+
+            ClTiendaE objDatos = null;
+
+            for (int i = 0; i < tblTiendas.Rows.Count; i++)
+            {
+                objDatos = new ClTiendaE();
+                objDatos.idTienda = int.Parse(tblTiendas.Rows[i]["codigoTienda"].ToString());
+                objDatos.codigoTienda = tblTiendas.Rows[i]["codigoTienda"].ToString();
+                objDatos.nombreTienda = tblTiendas.Rows[i]["nombreTienda"].ToString();
+                objDatos.descripcion = tblTiendas.Rows[i]["descripcion"].ToString();
+                objDatos.nombreTienda = tblTiendas.Rows[i]["nombreTienda"].ToString();
+                objDatos.direccion = tblTiendas.Rows[i]["direccion"].ToString();
+                objDatos.estado = tblTiendas.Rows[i]["estado"].ToString();
+
+                listaTiendas.Add(objDatos);
+            }
+            return listaTiendas;
+
+        }
+
 
         public int mtdEStado(ClTiendaE objDatos, string codigo)
         {
@@ -122,6 +151,46 @@ namespace appWebSkyStore.Datos
 
             return cantAct;
 
+        }
+
+        public List<ClTiendaE> mtdListarTiendaAdmin(int id)
+        {
+            string consulta = "select * from Tienda where idUsuario = "+ id +"";
+            ClProcesarSql objSQL = new ClProcesarSql();
+            DataTable tblTiendas = objSQL.mtdSelectDesc(consulta);
+
+            List<ClTiendaE> listaTiendas = new List<ClTiendaE>();
+
+            for (int i = 0; i < tblTiendas.Rows.Count; i++)
+            {
+                ClTiendaE objDatos = new ClTiendaE();
+                objDatos.codigoTienda = tblTiendas.Rows[i]["codigoTienda"].ToString();
+                objDatos.nombreTienda = tblTiendas.Rows[i]["nombreTienda"].ToString();
+                objDatos.descripcion = tblTiendas.Rows[i]["descripcion"].ToString();
+                objDatos.nombreTienda = tblTiendas.Rows[i]["nombreTienda"].ToString();
+                objDatos.direccion = tblTiendas.Rows[i]["direccion"].ToString();
+                objDatos.estado = tblTiendas.Rows[i]["estado"].ToString();
+
+                listaTiendas.Add(objDatos);
+            }
+            return listaTiendas;
+
+        }
+
+        public ClTiendaE mtdCorreoUsu(string codigo)
+        {
+            string consulta = "SELECT * FROM Tienda INNER JOIN Usuario ON Tienda.idUsuario = Usuario.idUsuario WHERE codigoTienda = '" + codigo + "'";
+            ClProcesarSql objSQL = new ClProcesarSql();
+            DataTable tblTiendas = objSQL.mtdSelectDesc(consulta);
+
+            ClTiendaE objDatos = null;
+
+            if (tblTiendas.Rows.Count > 0)
+            {
+                objDatos = new ClTiendaE();
+                objDatos.email = tblTiendas.Rows[0]["email"].ToString();
+            }
+            return objDatos;
         }
     }
 }

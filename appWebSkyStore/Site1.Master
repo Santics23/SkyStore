@@ -78,17 +78,25 @@
                                 SkyStore</a>
                         </div>
                     </div>
-                    <div class="col-lg-5 col-md-5 input-group">
+                    <div class="col-lg-4 col-md-4 input-group">
                         <asp:TextBox ID="txtBuscar" CssClass="form-control bg-white" runat="server" placeholder="Buscar" aria-label="Buscar" aria-describedby="basic-addon1"></asp:TextBox>
                         <asp:LinkButton runat="server" OnClick="btnSearch_Click"><i class="input-group fa fa-magnifying-glass fa-lg text-black" id="basic-addon1"></i></asp:LinkButton>
                     </div>
-                    <div class="col-lg-5 col-md-5">
+                    <div class="col-lg-6 col-md-6">
                         <nav class="header__menu mobile-menu">
                             <ul>
                                 <li class=""><a href="Home.aspx">Principal</a></li>
                                 <li><a href="Productos.aspx">Productos</a></li>
                                 <li><a href="VerTienda.aspx">Tiendas</a></li>
-                                <li><i class="fa fa-cart-shopping fa-lg text-black"></i></li>
+                                <li><a href="Carrito.aspx"><i class="fa fa-cart-shopping fa-lg text-black"></i></a></li>
+                                <li id="options" runat="server" class="dropdown">
+                                    <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-user fa-lg text-black"></i>
+                                    </a>
+                                    <div class="dropdown-menu">                                        
+                                        <asp:linkbutton runat="server" ID="btnOpciones" class="dropdown-item" OnClick="btnOpciones_Click">Mi Información</asp:linkbutton>
+                                        <asp:linkbutton runat="server" ID="btnLogOut" class="dropdown-item" OnClick="btnLogOut_Click">Cerrar Sesión</asp:linkbutton>
+                                    </div>
+                                </li>
                             </ul>
                         </nav>
                     </div>

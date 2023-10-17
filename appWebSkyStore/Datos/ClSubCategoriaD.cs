@@ -38,7 +38,7 @@ namespace appWebSkyStore.Datos
         
         public DataTable mtdObtenerProductos(string genero , string subcategs , float rangeMin ,  float rangeMax)
         {
-            string sql = "SELECT Producto.nombreProducto, Producto.imagen , Producto.descripcion , Producto.precio , SubCategoria.subCategoria FROM Producto INNER JOIN SubCategoria On Producto.idSubCategoria = SubCategoria.idSubCategoria INNER JOIN Categoria ON SubCategoria.idCategoria = Categoria.idCategoria WHERE categoria LIKE '%' + '"+genero+ "' + '%' AND subCategoria LIKE '%' + '"+subcategs+ "' + '%' AND Producto.precio BETWEEN " + rangeMin+" AND "+rangeMax+"";
+            string sql = "SELECT Producto.idProducto,Producto.nombreProducto, Producto.imagen , Producto.descripcion , Producto.precio , SubCategoria.subCategoria FROM Producto INNER JOIN SubCategoria On Producto.idSubCategoria = SubCategoria.idSubCategoria INNER JOIN Categoria ON SubCategoria.idCategoria = Categoria.idCategoria WHERE categoria LIKE '%' + '" + genero+ "' + '%' AND subCategoria LIKE '%' + '"+subcategs+ "' + '%' AND Producto.precio BETWEEN " + rangeMin+" AND "+rangeMax+"";
             ClProcesarSql objSQL = new ClProcesarSql();
             DataTable tblDatos = objSQL.mtdSelectDesc(sql);
 
@@ -55,7 +55,7 @@ namespace appWebSkyStore.Datos
         
         public DataTable mtdObtenerProductosAll()
         {
-            string sql = "SELECT Producto.nombreProducto, Producto.imagen , Producto.descripcion , Producto.precio , SubCategoria.subCategoria FROM Producto INNER JOIN SubCategoria On Producto.idSubCategoria = SubCategoria.idSubCategoria";
+            string sql = "SELECT Producto.idProducto,Producto.nombreProducto, Producto.imagen , Producto.descripcion , Producto.precio , SubCategoria.subCategoria FROM Producto INNER JOIN SubCategoria On Producto.idSubCategoria = SubCategoria.idSubCategoria";
             ClProcesarSql objSQL = new ClProcesarSql();
             DataTable tblDatos = objSQL.mtdSelectDesc(sql);
 

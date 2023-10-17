@@ -71,7 +71,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Scripts\dataTables2.js" />
+    <Content Include="Scripts\DataTable.js" />
     <Content Include="Scripts\Recursos\DataTables\DataTables-1.13.4\css\dataTables.bootstrap.css" />
     <Content Include="Scripts\Recursos\DataTables\DataTables-1.13.4\css\dataTables.bootstrap.min.css" />
     <Content Include="Scripts\Recursos\DataTables\DataTables-1.13.4\css\dataTables.bootstrap4.css" />
@@ -165,13 +165,13 @@
     <Content Include="Vista\Bootstrap\Scripts\bootstrap.js" />
     <Content Include="Vista\Bootstrap\Scripts\bootstrap.min.js" />
     <Content Include="Scripts\carritodeCompras.js" />
-    <Content Include="Scripts\DataTable.js" />
     <Content Include="Scripts\jquery.nicescroll.js" />
     <Content Include="Scripts\mainPageP.js" />
     <Content Include="Scripts\popup.min.js" />
     <Content Include="Scripts\shop.js" />
     <Content Include="Scripts\slicknav.js" />
     <Content Include="Vista\AdministrarProducts.aspx" />
+    <Content Include="Vista\Carrito.aspx" />
     <Content Include="Vista\CSS\barra.css" />
     <Content Include="Vista\CSS\footer.css" />
     <Content Include="Vista\CSS\home.css" />
@@ -185,6 +185,7 @@
     <Content Include="Vista\CSS\verTienda.css" />
     <Content Include="Vista\DatosAdmin.aspx" />
     <Content Include="Vista\DatosAdminT.aspx" />
+    <Content Include="Vista\DatosCliente.aspx" />
     <Content Include="Vista\imagenes\6073873.png" />
     <Content Include="Vista\imagenes\compra-digital.png" />
     <Content Include="Vista\imagenes\hero-1.jpg" />
@@ -199,6 +200,7 @@
     <Content Include="Vista\imgesCategoria\IMG_1645.jpg" />
     <Content Include="Vista\imgesCategoria\IMG_1646.jpg" />
     <Content Include="Vista\ListarTiendaAdmin.aspx" />
+    <Content Include="Vista\MostrarTeindas.aspx" />
     <Content Include="Vista\PerfilAdminT.aspx" />
     <Content Include="Vista\SweetAlert\Script\sweetalert-dev.js" />
     <Content Include="Scripts\sweetAlert.js" />
@@ -236,6 +238,13 @@
     <Compile Include="AdminTienda.Master.designer.cs">
       <DependentUpon>AdminTienda.Master</DependentUpon>
     </Compile>
+    <Compile Include="Cliente.Master.cs">
+      <DependentUpon>Cliente.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cliente.Master.designer.cs">
+      <DependentUpon>Cliente.Master</DependentUpon>
+    </Compile>
     <Compile Include="Datos\ClCategoriaD.cs" />
     <Compile Include="Datos\ClConexion.cs" />
     <Compile Include="Datos\ClProcesarSql.cs" />
@@ -244,6 +253,7 @@
     <Compile Include="Datos\ClSubCategoriaD.cs" />
     <Compile Include="Datos\ClTiendaD.cs" />
     <Compile Include="Datos\ClUsuarioD.cs" />
+    <Compile Include="Entidades\ClCarritoE.cs" />
     <Compile Include="Entidades\ClCategoriaE.cs" />
     <Compile Include="Entidades\ClProductoE.cs" />
     <Compile Include="Entidades\ClRolE.cs" />
@@ -255,6 +265,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Logica\ClCategoriaL.cs" />
+    <Compile Include="Logica\ClEncriptarAES.cs" />
     <Compile Include="Logica\ClProductoL.cs" />
     <Compile Include="Logica\ClRolL.cs" />
     <Compile Include="Logica\ClSubCategoriaL.cs" />
@@ -282,6 +293,13 @@
     <Compile Include="Vista\AdministrarProducts.aspx.designer.cs">
       <DependentUpon>AdministrarProducts.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Vista\Carrito.aspx.cs">
+      <DependentUpon>Carrito.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\Carrito.aspx.designer.cs">
+      <DependentUpon>Carrito.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Vista\DatosAdmin.aspx.cs">
       <DependentUpon>DatosAdmin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -295,6 +313,13 @@
     </Compile>
     <Compile Include="Vista\DatosAdminT.aspx.designer.cs">
       <DependentUpon>DatosAdminT.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\DatosCliente.aspx.cs">
+      <DependentUpon>DatosCliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\DatosCliente.aspx.designer.cs">
+      <DependentUpon>DatosCliente.aspx</DependentUpon>
     </Compile>
     <Compile Include="Vista\Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
@@ -316,6 +341,13 @@
     </Compile>
     <Compile Include="Vista\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\MostrarTeindas.aspx.cs">
+      <DependentUpon>MostrarTeindas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\MostrarTeindas.aspx.designer.cs">
+      <DependentUpon>MostrarTeindas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Vista\PerfilAdminT.aspx.cs">
       <DependentUpon>PerfilAdminT.aspx</DependentUpon>
@@ -385,6 +417,7 @@
     <Content Include="Vista\Bootstrap\Content\bootstrap-grid.rtl.css.map" />
     <Content Include="Vista\Bootstrap\Content\bootstrap-grid.min.css.map" />
     <Content Include="Vista\Bootstrap\Content\bootstrap-grid.css.map" />
+    <Content Include="Cliente.Master" />
     <None Include="packages.config" />
     <Content Include="Site1.Master" />
     <Content Include="Scripts\jquery.nicescroll.min.js" />

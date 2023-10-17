@@ -1,11 +1,17 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="appWebSkyStore.Vista.Home" %>
+﻿
+<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="appWebSkyStore.Vista.Home" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="CSS/shop.css" rel="stylesheet" />
     <link href="CSS/home.css" rel="stylesheet" />
     <link href="CSS/owl.carousel.min.css" rel="stylesheet" />
     <link href="CSS/Categorias.css" rel="stylesheet" />
-
+    <style>
+        .ocultar {
+            display: none;
+        }
+    </style>
+     
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div>
@@ -126,19 +132,21 @@
                             <div class="d-flex align-items-center justify-content-center mb-4">
                                 <div class="col-lg-4 col-md-2 col-sm-12 pb-1">
                                     <div class="index2 card shadow-sm">
-                                        <img src="<%# Eval("imagen") %>" id="imgCard" class="card-img-top" />
+                                        <img src="<%# Eval("imagen") %>" id="imgCard" class="card-img-
+                                            top" />
                                         <div id="label-top" class="shadow-sm"><%# Eval("subCategoria")  %></div>
                                         <div class="card-body">
                                             <h5 class="card-title mb-0"><%# Eval("nombreProducto")  %></h5>
                                             <div class="clearfix">
                                                 <span class="float-start badge rounded-pill bg-black"><%# Eval("precio")  %></span>
                                                 <span class="float-end"><a href="#" class="small text-muted"><%# Eval("descripcion")  %></a></span>
+                                                <asp:Label ID="idProducto" runat="server" class="ocultar" Text='<%# Eval("idProducto") %>'></asp:Label>
                                             </div>
                                             <div class="text-center my-4">
                                                 <div class="button">
                                                     <div class="button-wrapper">
                                                         <div class="text" style="font-size: 11px;">Añadir al Carrito +</div>
-                                                        <asp:LinkButton runat="server" class="icon">
+                                                        <asp:LinkButton runat="server" class="icon" OnClick="agregarAlCarrito_Click">
                                                             <i class="fa fa-cart-shopping fa-lg"></i>
                                                         </asp:LinkButton>
                                                     </div>

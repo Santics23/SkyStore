@@ -19,9 +19,10 @@ namespace appWebSkyStore
         {
             Session["nombre"] = "";
             Session["rol"] = "";
-            Session["id"] = "";
+            Session["id"] = 0;
             Session["buscar"] = "";
             Session["categs"] = "";
+           
         }
 
         protected void Application_BeginRequest(object sender, EventArgs e)

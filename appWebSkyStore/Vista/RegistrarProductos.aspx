@@ -47,10 +47,10 @@
                         </div>
                         <div class="form-group">
                             <label class="form-control-label">Promoción:</label>
-                            <asp:TextBox ID="txtPromocion" runat="server" placeholder="Promoción" class="form-control"></asp:TextBox>
+                            <asp:TextBox ID="txtPromocion" runat="server" placeholder="Promoción" class="form-control" AutoPostBack="true" OnTextChanged="txtPromocion_TextChanged"></asp:TextBox>
                         </div>
                         <div class="form-group">
-                            <label class="form-control-label">Descuento:</label>
+                            <asp:Label ID="lblDescuento" runat="server" class="form-control-label">Descuento:</asp:Label>
                             <asp:TextBox ID="txtDescuento" runat="server" placeholder="Descuento" class="form-control"></asp:TextBox>
                         </div>
                         <div class="form-group">

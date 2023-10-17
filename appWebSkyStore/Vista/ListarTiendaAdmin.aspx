@@ -28,7 +28,7 @@
                     <asp:TemplateField HeaderText="Acciones">
                         <ItemTemplate>
                             <asp:Button ID="btnActivar" runat="server" Text="Activar" CommandName="Activar" CommandArgument='<%# Container.DataItemIndex %>' class="btn btn-success" />
-                            <asp:Button ID="btnInactivar" runat="server" Text="Inactivar" CommandName="Inactivar" CommandArgument='<%# Container.DataItemIndex %>' class="btn btn-warning" />
+                            <asp:Button ID="btnInactivar" runat="server" Text="Desactivar" CommandName="Desactivar" CommandArgument='<%# Container.DataItemIndex %>' class="btn btn-warning" />
                         </ItemTemplate>
                     </asp:TemplateField>
 

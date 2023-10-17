@@ -9,6 +9,7 @@
         }
 
     </style>
+    <link href="SweetAlert/Css/sweetalert.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div id="contDataT" class="container">
@@ -73,4 +74,6 @@
     </div>
 
     <%--Scrpts--%>
+    <script src="SweetAlert/Script/sweetalert-dev.js"></script>
+    <script src="SweetAlert/Script/sweetalert.min.js"></script>
 </asp:Content>

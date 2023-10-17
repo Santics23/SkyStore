@@ -87,6 +87,15 @@ namespace appWebSkyStore.Vista
         protected global::System.Web.UI.WebControls.TextBox txtPromocion;
 
         /// <summary>
+        /// Control lblDescuento.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDescuento;
+
+        /// <summary>
         /// Control txtDescuento.
         /// </summary>
         /// <remarks>

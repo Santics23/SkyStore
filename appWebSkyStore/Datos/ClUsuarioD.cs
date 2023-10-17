@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI.WebControls;
@@ -9,12 +10,11 @@ using System.Web.UI.WebControls;
 namespace appWebSkyStore.Datos
 {
     public class ClUsuarioD
-    {
-        
-        public ClUsuarioE mtdLogin(string email, string clave)
+    {        
+        public ClUsuarioE mtdLogin(string email)
         {
             
-            string consulta = "select * from Usuario where email = '" + email + "' and clave = '" + clave + "'";
+            string consulta = "select * from Usuario where email = '" + email + "'";
 
             ClProcesarSql objSQL = new ClProcesarSql();
 
@@ -130,6 +130,48 @@ namespace appWebSkyStore.Datos
             }
 
             return listarUsu;
+        }
+
+        public int mtdEditarUsuario(ClUsuarioE objDatos , int id)
+        {
+            string ProcesosAlmacenado = "EditarUsuario";
+            ClConexion objConexion = new ClConexion();
+            SqlCommand comando = new SqlCommand(ProcesosAlmacenado, objConexion.MtdConexion());
+            comando.CommandType = CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@id", id);
+            comando.Parameters.AddWithValue("@documento", objDatos.documento);
+            comando.Parameters.AddWithValue("@nombre", objDatos.nombre);
+            comando.Parameters.AddWithValue("@apellido", objDatos.apellido);
+            comando.Parameters.AddWithValue("@telefono", objDatos.telefono);            
+            comando.Parameters.AddWithValue("@email", objDatos.email);
+            comando.Parameters.AddWithValue("@clave", objDatos.clave);
+
+            int editar = comando.ExecuteNonQuery();
+            return editar;
+        }
+        public ClUsuarioE mtdListarDatos(int idUsuario)
+        {
+            string ProcesosAlmacenado = "ListarDatosUsuario";
+            ClConexion objConexion = new ClConexion();
+            SqlCommand comando = new SqlCommand(ProcesosAlmacenado, objConexion.MtdConexion());
+            comando.CommandType = CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@id", idUsuario);
+            comando.ExecuteNonQuery();
+            SqlDataReader tabla = comando.ExecuteReader();
+            ClUsuarioE objDatos = null;
+            if (tabla.Read())
+            {
+                objDatos = new ClUsuarioE();
+                objDatos.idUsuario = tabla.GetInt32(0);
+                objDatos.documento = tabla.GetString(1);
+                objDatos.nombre = tabla.GetString(2);
+                objDatos.apellido = tabla.GetString(3);
+                objDatos.telefono = tabla.GetString(4);
+                objDatos.email = tabla.GetString(5);
+                objDatos.clave = tabla.GetString(6);                
+                
+            }
+            return objDatos;
         }
     }
 }

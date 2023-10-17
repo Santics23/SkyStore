@@ -25,6 +25,19 @@ function MostrarSweetAlert1() {
     });
 }
 
+function MostrarSweetAlert3() {
+    Swal.fire({
+        title: '¡Usuario Registrado!',
+        text: 'El Usuario Ha Sido Registrado Con Exito',
+        icon: 'success',
+        confirmButtonText: 'Ok',
+    }).then(function (result) {
+        if (result.isConfirmed) {
+            window.location.href = 'Login.aspx'; // Cambia la URL por la página a la que quieres redirigir
+        }
+    });
+}
+
 function sweetAlert() {
     Swal.fire({
         title: '¡Campos Vacios',

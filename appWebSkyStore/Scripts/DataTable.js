@@ -4,9 +4,6 @@ var listaProducto;
 
 $(document).ready(function () {
     table = $('#DataTableProduct').DataTable({
-        thead: {
-            sticky: true
-        },
         data: jsonData,
         columns: [
             { data: 'Codigo' },
@@ -20,11 +17,13 @@ $(document).ready(function () {
             { data: 'Descuento' },
             { data: 'idSubCategoria' },
             {
-                "data": null,
+                data: null,
                 "defaultContent": "<div class='text-center'><div class='btn-group'><button class='btn btn-primary btn-sm btnEditar'><i class='material-icons'>edit</i></button><button class='btn btn-danger btn-sm btnBorrar'><i class='material-icons'>delete</i></button></div></div>",
             },
 
         ],
+        scrollY: '400px',
+        scrollX: true,
         autoWidth: false
     });
 });
@@ -43,15 +42,14 @@ $('#DataTableProduct').on('click', '.btnEditar', function (e) {
         success: function (Data) {
 
             var datosProducto = Data.d;
-            $('.txt-codigo').val(datosProducto[0]["codigoProducto"]);
-            $('.txt-nombre').val(datosProducto[0]["nombreProducto"]);
-            $('.txt-precio').val(datosProducto[0]["precio"]);
-            $('.txt-descripcion').val(datosProducto[0]["descripcion"]);
-            $('.txt-imagen').val(datosProducto[0]["imagen"]);
-            $('.txt-stock').val(datosProducto[0]["stock"]);
-            $('.txt-estado').val(datosProducto[0]["estado"]);
-            $('.txt-promo').val(datosProducto[0]["promocion"]);
-            $('.txt-desc').val(datosProducto[0]["descuento"]);
+            $('.txt-codigo').val(datosProducto[0]["Codigo"]);
+            $('.txt-nombre').val(datosProducto[0]["Nombre"]);
+            $('.txt-precio').val(datosProducto[0]["Precio"]);
+            $('.txt-descripcion').val(datosProducto[0]["Descripcion"]);
+            $('.txt-stock').val(datosProducto[0]["Stock"]);
+            $('.txt-estado').val(datosProducto[0]["Estado"]);
+            $('.txt-promo').val(datosProducto[0]["Promocion"]);
+            $('.txt-desc').val(datosProducto[0]["Descuento"]);
             $('.txt-subcateg').val(datosProducto[0]["idSubCategoria"]);
 
             $('#editarModal').modal('show');
@@ -61,7 +59,7 @@ $('#DataTableProduct').on('click', '.btnEditar', function (e) {
         }
     });
 
-})
+});
 
 $('#btnActualizar').on('click', function (e) {
     e.preventDefault();
@@ -79,15 +77,15 @@ $('#btnActualizar').on('click', function (e) {
 
     var DatosActualizados = {
         idProducto: idProducto,
-        codigoProducto: Codigo,
-        nombreProducto: Nombre,
-        precio: Precio,
-        descripcion: Descripcion,
-        imagen: Imagen,
-        stock: Stock,
-        estado: Estado,
-        promocion: Promocion,
-        descuento: Descuento,
+        Codigo: Codigo,
+        Nombre: Nombre,
+        Precio: Precio,
+        Descripcion: Descripcion,
+        Imagen: Imagen,
+        Stock: Stock,
+        Estado: Estado,
+        Promocion: Promocion,
+        Descuento: Descuento,
         idSubCategoria: SubCategoria
     };
 
@@ -149,8 +147,8 @@ $('#DataTableProduct').on('click', '.btnBorrar', function (e) {
         cancelButtonColor: "#d33",
         confirmButtonText: "Sí, eliminar",
         cancelButtonText: "Cancelar"
-    }, function (isConfirmed) {
-        if (isConfirmed) {
+    }).then(function (result) {
+        if (result.isConfirmed) {
             // Código para eliminar el registro
 
             var data = {
@@ -168,16 +166,14 @@ $('#DataTableProduct').on('click', '.btnBorrar', function (e) {
                 dataType: "json",
                 success: function (Data) {
                     if (Data) {
-
                         swal("¡Éxito!", "Los datos se eliminaron correctamente.", "success");
                     }
-                    recargarTabla()
+                    recargarTabla();
                 },
                 error: function (error) {
                     console.log(error);
                 }
             });
-
         }
     });
 });

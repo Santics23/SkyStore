@@ -67,7 +67,7 @@ namespace appWebSkyStore.Vista
                     objTiendaE.descripcion = txtDescripcion.Text;
                     objTiendaE.imagen = imagen;
                     objTiendaE.direccion = txtDireccion.Text;
-                    objTiendaE.idUsuario = 1;
+                    objTiendaE.idUsuario = int.Parse(Session["id"].ToString());
                     objTiendaE.estado = "Inactiva";
                     ClTiendaL objTiendaL = new ClTiendaL();
                     int registrar = objTiendaL.mtdRegistrarT(objTiendaE);
@@ -108,34 +108,30 @@ namespace appWebSkyStore.Vista
                 " Gracias por su atecion quedamos atentos a cualquier inquietud" +
                 " Coridal Saludos";
 
-
-            MailMessage message = new MailMessage();
-            message.To.Add(txtCorreo.Text);
-            message.Subject = "Sky Store";
-            message.Body = body;
-            message.From = new MailAddress("rdmorales40@misena.edu.co");
-
-            SmtpClient smtpClient = new SmtpClient();
-            smtpClient.Host = "smtp.gmail.com";
-            smtpClient.Port = 587;
-            smtpClient.UseDefaultCredentials = false;
-            smtpClient.EnableSsl = true;
-            smtpClient.Credentials = new NetworkCredential("rdmorales40@misena.edu.co", "12345678");
-            smtpClient.Send(message);
-
-
             if (txtCorreo.Text == "")
             {
-                string mens = "Por favor ingrese el correo electronico";
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('¡Campos Vacios','" + mens + "', 'info')", true);
-
+                ScriptManager.RegisterStartupScript(this, GetType(), "SweetAlert", "sweetAlert2('¡Campos Vacios!','Por Favor, ingrese el correo electronico','info');", true);
             }
             else
             {
-                string mens = "Por favor revise su correo electronico";
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('¡Correo Enviado!','" + mens + "', 'success')", true);
-            }
+                MailMessage message = new MailMessage();
+                message.To.Add(txtCorreo.Text);
+                message.Subject = "Sky Store";
+                message.Body = body;
+                message.From = new MailAddress("jscastillo100@misena.edu.co");
 
+                SmtpClient smtpClient = new SmtpClient();
+                smtpClient.Host = "smtp.gmail.com";
+                smtpClient.Port = 587;
+                smtpClient.UseDefaultCredentials = false;
+                smtpClient.EnableSsl = true;
+                smtpClient.Credentials = new NetworkCredential("jscastillo100@misena.edu.co", "1029641001jc");
+                smtpClient.Send(message);
+
+                txtCorreo.Text = "";
+                ScriptManager.RegisterStartupScript(this, GetType(), "SweetAlert", "sweetAlert2('¡Correo Enviado!','Por Favor, revise su correo','info');", true);
+            }
+            
         }
 
     }

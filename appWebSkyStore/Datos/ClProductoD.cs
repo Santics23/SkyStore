@@ -14,7 +14,7 @@ namespace appWebSkyStore.Datos
         public int MtdRegistrar(ClProductoE objDatos)
         {
 
-            String consulta = "insert into Producto(codigoProducto,nombreProducto,precio,descripcion,imagen,stock,estado,promocion,descuento,idSubCategoria)" +
+            string consulta = "insert into Producto(codigoProducto,nombreProducto,precio,descripcion,imagen,stock,estado,promocion,descuento,idSubCategoria)" +
                                 "values('" + objDatos.Codigo + "','" + objDatos.Nombre + "'," + objDatos.Precio + ",'" +
                                 objDatos.Descripcion + "','" + objDatos.Imagen + "'," + objDatos.Stock + ",'" + objDatos.Estado + "','" + objDatos.Promocion + "'," + objDatos.Descuento + "," + objDatos.idSubCategoria + ")";
 
@@ -35,7 +35,7 @@ namespace appWebSkyStore.Datos
 
         public List<ClProductoE> mtdListarProducts(string busqueda)
         {
-            string consulta = "SELECT Producto.nombreProducto, Producto.imagen , Producto.descripcion , Producto.precio , SubCategoria.subCategoria FROM Producto INNER JOIN SubCategoria On Producto.idSubCategoria = SubCategoria.idSubCategoria WHERE nombreProducto LIKE '%' + '" + busqueda + "' + '%' OR subCategoria LIKE '%' + '" + busqueda + "' + '%'";
+            string consulta = "SELECT Producto.idProducto,Producto.nombreProducto, Producto.imagen , Producto.descripcion , Producto.precio , SubCategoria.subCategoria FROM Producto INNER JOIN SubCategoria On Producto.idSubCategoria = SubCategoria.idSubCategoria WHERE nombreProducto LIKE '%' + '" + busqueda + "' + '%' OR subCategoria LIKE '%' + '" + busqueda + "' + '%'";
             ClProcesarSql objSQL = new ClProcesarSql();
             DataTable tblDatos = objSQL.mtdSelectDesc(consulta);
             List<ClProductoE> listaData = new List<ClProductoE>();
@@ -57,7 +57,7 @@ namespace appWebSkyStore.Datos
 
         public DataTable mtdObtenerProductos()
         {
-            string sql = "SELECT TOP 12 Producto.nombreProducto, Producto.imagen , Producto.descripcion , Producto.precio , SubCategoria.subCategoria FROM Producto INNER JOIN SubCategoria On Producto.idSubCategoria = SubCategoria.idSubCategoria";
+            string sql = "SELECT TOP 12 Producto.idProducto, Producto.nombreProducto, Producto.imagen , Producto.descripcion , Producto.precio , SubCategoria.subCategoria FROM Producto INNER JOIN SubCategoria On Producto.idSubCategoria = SubCategoria.idSubCategoria";
             ClProcesarSql objSQL = new ClProcesarSql();
             DataTable tblDatos = objSQL.mtdSelectDesc(sql);
 
@@ -73,7 +73,7 @@ namespace appWebSkyStore.Datos
 
         public DataTable mtdBusqueda(string busqueda)
         {
-            string consulta = "SELECT Producto.nombreProducto, Producto.imagen , Producto.descripcion , Producto.precio , SubCategoria.subCategoria FROM Producto INNER JOIN SubCategoria On Producto.idSubCategoria = SubCategoria.idSubCategoria INNER JOIN Categoria On SubCategoria.idCategoria = Categoria.idCategoria WHERE nombreProducto LIKE '%" + busqueda + "%' OR categoria LIKE '%" + busqueda + "%' OR subCategoria LIKE '%" + busqueda + "%'";
+            string consulta = "SELECT Producto.idProducto, Producto.nombreProducto, Producto.imagen , Producto.descripcion , Producto.precio , SubCategoria.subCategoria FROM Producto INNER JOIN SubCategoria On Producto.idSubCategoria = SubCategoria.idSubCategoria INNER JOIN Categoria On SubCategoria.idCategoria = Categoria.idCategoria WHERE nombreProducto LIKE '%" + busqueda + "%' OR categoria LIKE '%" + busqueda + "%' OR subCategoria LIKE '%" + busqueda + "%'";
             ClProcesarSql objSQL = new ClProcesarSql();
             DataTable tblDatos = objSQL.mtdSelectDesc(consulta);
 
@@ -103,7 +103,6 @@ namespace appWebSkyStore.Datos
                 objProductE.Nombre = tbl.Rows[i]["nombreProducto"].ToString();
                 objProductE.Precio = float.Parse(tbl.Rows[i]["precio"].ToString());
                 objProductE.Descripcion = tbl.Rows[i]["descripcion"].ToString();
-                objProductE.Imagen = tbl.Rows[i]["imagen"].ToString();
                 objProductE.Stock = int.Parse(tbl.Rows[i]["stock"].ToString());
                 objProductE.Estado = tbl.Rows[i]["estado"].ToString();
                 objProductE.Promocion = tbl.Rows[i]["promocion"].ToString();
@@ -166,8 +165,7 @@ namespace appWebSkyStore.Datos
             Actualizar.Parameters.AddWithValue("@Codigo", objDatos.Codigo);
             Actualizar.Parameters.AddWithValue("@Nombre", objDatos.Nombre);
             Actualizar.Parameters.AddWithValue("@Precio", objDatos.Precio);
-            Actualizar.Parameters.AddWithValue("@Descripcion", objDatos.Descripcion);
-            Actualizar.Parameters.AddWithValue("@Imagen", objDatos.Imagen);
+            Actualizar.Parameters.AddWithValue("@Descripcion", objDatos.Descripcion);            
             Actualizar.Parameters.AddWithValue("@Stock", objDatos.Stock);
             Actualizar.Parameters.AddWithValue("@Estado", objDatos.Estado);
             Actualizar.Parameters.AddWithValue("@Promocion", objDatos.Promocion);
@@ -186,6 +184,102 @@ namespace appWebSkyStore.Datos
             SqlCommand Eliminar = objSQL.mtdIUDConect2(ProcesosAlmacenado);
 
             Eliminar.Parameters.AddWithValue("@idProducto", objDatos.idProducto);
+
+            int DatosActualizar = Eliminar.ExecuteNonQuery();
+            return DatosActualizar;
+
+        }
+
+        public int mtdRegistrarCarrito(ClCarritoE objCarrito)
+        {
+            string consulta = "insert into Carrito(cantidad, idProducto, idUsuario)" +
+                               "values(" + objCarrito.cantidad + "," + objCarrito.idProducto + "," + objCarrito.idUsuario + ")";
+
+            ClProcesarSql objSQL = new ClProcesarSql();
+            int canReg = objSQL.mtdIUDConect(consulta);
+            return canReg;
+        }
+
+        public int mtdRegistrarCarrito2(ClCarritoE objCarrito)
+        {
+            string consulta = "UPDATE Carrito SET cantidad = "+ objCarrito.cantidad +" WHERE idCarrito = "+ objCarrito.idCarrito +"";
+
+            ClProcesarSql objSQL = new ClProcesarSql();
+            int canReg = objSQL.mtdIUDConect(consulta);
+            return canReg;
+        }
+
+        public List<ClCarritoE> mtdBuscarCarrito(ClCarritoE objCarrito)
+        {
+            string Consulta = "SELECT * FROM Carrito WHERE idProducto = " + objCarrito.idProducto + " AND idUsuario = "+ objCarrito.idUsuario +"";
+
+            ClProcesarSql objSQL = new ClProcesarSql();
+            DataTable tbl = objSQL.mtdSelectDesc(Consulta);
+            List<ClCarritoE> ListarCarrito = new List<ClCarritoE>();
+
+            for (int i = 0; i < tbl.Rows.Count; i++)
+            {
+                ClCarritoE objCarritoE = new ClCarritoE();
+                objCarritoE.idCarrito = int.Parse(tbl.Rows[i]["idCarrito"].ToString());
+                objCarritoE.cantidad = int.Parse(tbl.Rows[i]["cantidad"].ToString());
+                objCarritoE.idProducto = int.Parse(tbl.Rows[i]["idProducto"].ToString());
+                objCarritoE.idUsuario = int.Parse(tbl.Rows[i]["idUsuario"].ToString());
+
+                ListarCarrito.Add(objCarritoE);
+
+
+            }
+            return ListarCarrito;
+        }
+        public List<ClCarritoE> mtdCarrito(int idUsuario)
+        {
+            string Consulta = "SELECT * FROM Carrito INNER JOIN Producto ON Carrito.idProducto = Producto.idProducto WHERE idUsuario = " + idUsuario + "";
+
+            ClProcesarSql objSQL = new ClProcesarSql();
+            DataTable tbl = objSQL.mtdSelectDesc(Consulta);
+            List<ClCarritoE> ListarCarrito = new List<ClCarritoE>();
+
+            for (int i = 0; i < tbl.Rows.Count; i++)
+            {
+                ClCarritoE objCarritoE = new ClCarritoE();
+                objCarritoE.idCarrito = int.Parse(tbl.Rows[i]["idCarrito"].ToString());
+                objCarritoE.Codigo = tbl.Rows[i]["codigoProducto"].ToString();
+                objCarritoE.Nombre = tbl.Rows[i]["nombreProducto"].ToString();                
+                objCarritoE.Precio = float.Parse(tbl.Rows[i]["precio"].ToString());
+                objCarritoE.Stock = int.Parse(tbl.Rows[i]["stock"].ToString());               
+                objCarritoE.cantidad = int.Parse(tbl.Rows[i]["cantidad"].ToString());
+                objCarritoE.idProducto = int.Parse(tbl.Rows[i]["idProducto"].ToString());
+                objCarritoE.idUsuario = int.Parse(tbl.Rows[i]["idUsuario"].ToString());
+
+                ListarCarrito.Add(objCarritoE);
+
+
+            }
+            return ListarCarrito;
+        }
+
+        public int mtdEliminarCarrito(ClCarritoE objDatos)
+        {
+            string ProcesosAlmacenado = "EliminarCarrito";
+
+            ClProcesarSql objSQL = new ClProcesarSql();
+            SqlCommand Eliminar = objSQL.mtdIUDConect2(ProcesosAlmacenado);
+
+            Eliminar.Parameters.AddWithValue("@idCarrito", objDatos.idCarrito);
+
+            int DatosActualizar = Eliminar.ExecuteNonQuery();
+            return DatosActualizar;
+
+        }
+
+        public int mtdVaciarCarrito(ClCarritoE objDatos)
+        {
+            string ProcesosAlmacenado = "VaciarCarrito";
+
+            ClProcesarSql objSQL = new ClProcesarSql();
+            SqlCommand Eliminar = objSQL.mtdIUDConect2(ProcesosAlmacenado);
+
+            Eliminar.Parameters.AddWithValue("@idUsuario", objDatos.idUsuario);
 
             int DatosActualizar = Eliminar.ExecuteNonQuery();
             return DatosActualizar;

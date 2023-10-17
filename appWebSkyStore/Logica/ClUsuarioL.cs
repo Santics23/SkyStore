@@ -10,10 +10,10 @@ namespace appWebSkyStore.Logica
 {
     public class ClUsuarioL
     {
-        public ClUsuarioE mtdLogin(string email, string clave)
+        public ClUsuarioE mtdLogin(string email)
         {
             ClUsuarioD ObjUsuarioD = new ClUsuarioD();
-            ClUsuarioE DatosUsuario = ObjUsuarioD.mtdLogin(email, clave);
+            ClUsuarioE DatosUsuario = ObjUsuarioD.mtdLogin(email);
             return DatosUsuario;
 
         }
@@ -57,6 +57,20 @@ namespace appWebSkyStore.Logica
 
             return Verificar;
 
+        }
+
+        public int mtdEditar(ClUsuarioE objDatos, int id)
+        {
+            ClUsuarioD objUsuD = new ClUsuarioD();
+            int editar = objUsuD.mtdEditarUsuario(objDatos , id);
+            return editar;
+        }
+
+        public ClUsuarioE mtdListarDatos(int id)
+        {
+            ClUsuarioD objUsuD = new ClUsuarioD();
+            ClUsuarioE objDatos = objUsuD.mtdListarDatos(id);
+            return objDatos;
         }
     }
 }
